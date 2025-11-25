@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety Counter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .container {
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 3rem;
+        }
+        
+        .icon {
+            width: 6rem;
+            height: 6rem;
+            margin: 0 auto 1.5rem;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        
+        h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .counter-box {
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 4rem;
+        }
+        
+        .days-number {
+            font-size: 8rem;
+            font-weight: bold;
+            color: #047857;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+        
+        .days-label {
+            font-size: 3rem;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .subtitle {
+            font-size: 2rem;
+            color: #4B5563;
+            margin-top: 1.5rem;
+        }
+        
+        .reset-btn {
+            background: #DC2626;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 1.5rem 3rem;
+            border: none;
+            border-radius: 1rem;
+            cursor: pointer;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s;
+            margin-top: 2rem;
+        }
+        
+        .reset-btn:hover {
+            background: #B91C1C;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="icon">⚠️</div>
+            <h1 style="font-size: 3rem; margin-bottom: 0.5rem;">VAS</h1>
+            <h1>WORKPLACE SAFETY</h1>
+        </div>
+        
+        <div class="counter-box">
+            <div class="days-number">85</div>
+            <div class="days-label">DAYS</div>
+            <div class="subtitle">WITHOUT A SAFETY INCIDENT</div>
+        </div>
+        
+        <button class="reset-btn" onclick="resetCounter()">Reset Counter</button>
+    </div>
+    
+    <script>
+        // *** EDIT THIS DATE TO RESET THE COUNTER ***
+        // Format: 'YYYY-MM-DD' - This is the date the counter started
+        const COUNTER_START_DATE = '2025-08-12';
+        
+        // Get the element that shows the number
+        const numberElement = document.querySelector('.days-number');
+        
+        function updateCounter() {
+            // Parse the start date
+            const startDate = new Date(COUNTER_START_DATE + 'T00:00:00');
+            const now = new Date();
+            
+            // Calculate days since start
+            const daysPassed = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+            
+            // Update the display: days passed
+            numberElement.textContent = daysPassed;
+        }
+        
+        function resetCounter() {
+            alert('To reset the counter, edit the COUNTER_START_DATE in the code to today\'s date, then save the file.');
+        }
+        
+        // Run on page load
+        updateCounter();
+        
+        // Update every hour to catch day changes
+        setInterval(updateCounter, 3600000);
+    </script>
+</body>
+</html>
